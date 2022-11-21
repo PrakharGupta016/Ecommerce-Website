@@ -9,11 +9,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+
+
     private String first_name;
+
+
+
     private String last_name;
     private String email;
+    private String password;
 
     public User() {
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setId(Integer id) {
