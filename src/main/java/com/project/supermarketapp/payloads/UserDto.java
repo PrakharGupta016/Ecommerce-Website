@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name ="users")
-public class UserDto {
+public class  UserDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,7 +19,16 @@ public class UserDto {
     private String password;
 
     public UserDto() {
+       
     }
+
+    public UserDto(String first_name, String last_name, String email, String password) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+    }
+
     public String getPassword() {
         return password;
     }
