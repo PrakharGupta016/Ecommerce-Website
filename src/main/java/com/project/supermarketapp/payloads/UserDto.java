@@ -19,7 +19,7 @@ public class  UserDto {
     private String password;
 
     public UserDto() {
-       
+
     }
 
     public UserDto(String first_name, String last_name, String email, String password) {
