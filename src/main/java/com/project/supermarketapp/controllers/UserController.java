@@ -17,8 +17,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity<UserDto> createUser( @RequestBody UserDto userDto){
-        UserDto createdUserDto =this.userService.createUser(userDto);
+    public ResponseEntity<UserDto> signUpUser( @RequestBody UserDto userDto){
+        UserDto createdUserDto =this.userService.signUpUser(userDto);
         return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
 
 
@@ -44,7 +44,7 @@ public class UserController {
     }
     //GET-single user
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer userId){
+    public ResponseEntity<UserDto> getUser(@PathVariable Integer userId){
         return ResponseEntity.ok(this.userService.getUser(userId));
 
     }
