@@ -18,7 +18,7 @@ public class UserService {
 
     @Autowired
     private ModelMapper modelMapper;
-    public UserDto createUser(UserDto userDto) {
+    public UserDto signUpUser(UserDto userDto) {
         User user = this.dtoToUser(userDto);
         User savedUser = this.userRepo.save(user);
 
@@ -67,6 +67,7 @@ public class UserService {
         return userDto;
 
     }
+//    User save (UserDto registrationDto){}
 
 
 }
