@@ -1,6 +1,6 @@
 package com.project.supermarketapp.security;
 
-import com.project.supermarketapp.entities.User;
+import com.project.supermarketapp.controllers.entities.User;
 import com.project.supermarketapp.exceptions.ResourceNotFoundException;
 import com.project.supermarketapp.respository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,17 +1,14 @@
 package com.project.supermarketapp.controllers;
 
-import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.payloads.ApiResponse;
 import com.project.supermarketapp.payloads.UserDto;
 import com.project.supermarketapp.services.UserService;
-import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
