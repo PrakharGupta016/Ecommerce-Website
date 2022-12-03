@@ -1,6 +1,6 @@
 package com.project.supermarketapp.services;
 
-import com.project.supermarketapp.controllers.entities.User;
+import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.exceptions.ResourceNotFoundException;
 import com.project.supermarketapp.payloads.UserDto;
 import com.project.supermarketapp.respository.UserRepo;

@@ -1,6 +1,6 @@
 package com.project.supermarketapp.respository;
 
-import com.project.supermarketapp.controllers.entities.User;
+import com.project.supermarketapp.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

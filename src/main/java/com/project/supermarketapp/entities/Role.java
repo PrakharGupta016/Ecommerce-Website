@@ -1,4 +1,4 @@
-package com.project.supermarketapp.controllers.entities;
+package com.project.supermarketapp.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
