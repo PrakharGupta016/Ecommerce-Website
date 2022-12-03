@@ -4,6 +4,7 @@ import com.project.supermarketapp.payloads.CategoryDto;
 
 import java.util.List;
 
+
 public interface CategoryService {
 
     //create
