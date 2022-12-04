@@ -1,5 +1,7 @@
 package com.project.supermarketapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,4 +35,6 @@ public class Category {
   public void setCategoryDescription(String categoryDescription) {
     this.categoryDescription = categoryDescription;
   }
+  
+
 }
