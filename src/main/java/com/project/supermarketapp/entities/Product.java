@@ -22,7 +22,7 @@ public class Product {
     private @NotNull String name;
     private @NotNull String imageURL;
 
-    private @NotNull double costprice;
+    private @NotNull double costPrice;
 
     private @NotNull double salePrice;
     private @NotNull String description;
@@ -50,12 +50,12 @@ public class Product {
         this.imageURL = imageURL;
     }
 
-    public double getCostprice() {
-        return costprice;
+    public double getCostPrice() {
+        return costPrice;
     }
 
-    public void setCostprice(double costprice) {
-        this.costprice = costprice;
+    public void setCostPrice(double costprice) {
+        this.costPrice = costprice;
     }
 
     public double getSalePrice() {
@@ -90,4 +90,5 @@ public class Product {
     public void setId(Integer id) {
         this.id = id;
     }
+
 }

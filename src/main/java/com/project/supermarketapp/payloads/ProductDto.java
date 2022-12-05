@@ -11,9 +11,9 @@ public class ProductDto {
     private @NotNull String name;
     private @NotNull String imageURL;
 
-    private @NotNull double costprice;
+    private @NotNull double costPrice;
 
-    private @NotNull double saleprice;
+    private @NotNull double salePrice;
     private @NotNull String description;
     private @NotNull Integer categoryId;
 
@@ -37,20 +37,20 @@ public class ProductDto {
         this.imageURL = imageURL;
     }
 
-    public double getCostprice() {
-        return costprice;
+    public double getCostPrice() {
+        return costPrice;
     }
 
-    public void setCostprice(double costprice) {
-        this.costprice = costprice;
+    public void setCostPrice(double costprice) {
+        this.costPrice = costprice;
     }
 
-    public double getSaleprice(){
-        return saleprice;
+    public double getSalePrice(){
+        return salePrice;
     }
 
-    public void setSaleprice(double saleprice){
-        this.saleprice= saleprice;
+    public void setSalePrice(double salePrice){
+        this.salePrice= salePrice;
 
     }
 

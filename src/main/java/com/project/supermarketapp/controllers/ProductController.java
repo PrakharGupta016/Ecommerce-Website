@@ -33,7 +33,7 @@ public class ProductController {
     @PostMapping("/")
     public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductDto productDto) {
         Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
-        if (!optionalCategory.isPresent()) {
+        if (optionalCategory.isEmpty()) {
             return new ResponseEntity<ApiResponse>(new ApiResponse("category does not exists", false), HttpStatus.BAD_REQUEST);
         }
         productService.createProduct(productDto, optionalCategory.get());
