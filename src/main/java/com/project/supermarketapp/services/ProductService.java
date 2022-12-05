@@ -2,6 +2,7 @@ package com.project.supermarketapp.services;
 
 import com.project.supermarketapp.entities.Category;
 import com.project.supermarketapp.entities.Product;
+import com.project.supermarketapp.exceptions.ProductNotExistsException;
 import com.project.supermarketapp.payloads.ProductDto;
 import com.project.supermarketapp.respository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,12 @@ public class ProductService {
         product.setCostprice(productDto.getCostprice());
         product.setSalePrice(productDto.getSaleprice());
         productRepository.save(product);
+    }
+    public Product findById(Integer productId) throws ProductNotExistsException {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotExistsException("product id is invalid: " + productId);
+        }
+        return optionalProduct.get();
     }
 }
