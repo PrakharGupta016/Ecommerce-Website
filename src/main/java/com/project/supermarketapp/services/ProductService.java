@@ -22,7 +22,8 @@ public class ProductService {
         product.setImageURL(productDto.getImageURL());
         product.setName(productDto.getName());
         product.setCategory(category);
-        product.setPrice(productDto.getPrice());
+        product.setCostprice(productDto.getCostprice());
+        product.setSalePrice(productDto.getSaleprice());
         productRepository.save(product);
     }
 
@@ -32,7 +33,8 @@ public class ProductService {
         productDto.setImageURL(product.getImageURL());
         productDto.setName(product.getName());
         productDto.setCategoryId(product.getId());
-        productDto.setPrice(product.getPrice());
+        productDto.setCostprice(product.getCostprice());
+        productDto.setSaleprice(product.getSalePrice());
         productDto.setId(product.getId());
         return productDto;
     }
@@ -57,7 +59,8 @@ public class ProductService {
         product.setDescription(productDto.getDescription());
         product.setImageURL(productDto.getImageURL());
         product.setName(productDto.getName());
-        product.setPrice(productDto.getPrice());
+        product.setCostprice(productDto.getCostprice());
+        product.setSalePrice(productDto.getSaleprice());
         productRepository.save(product);
     }
 }

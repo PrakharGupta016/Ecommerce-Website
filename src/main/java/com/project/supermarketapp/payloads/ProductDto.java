@@ -10,7 +10,10 @@ public class ProductDto {
     private Integer id;
     private @NotNull String name;
     private @NotNull String imageURL;
-    private @NotNull double price;
+
+    private @NotNull double costprice;
+
+    private @NotNull double saleprice;
     private @NotNull String description;
     private @NotNull Integer categoryId;
 
@@ -34,12 +37,21 @@ public class ProductDto {
         this.imageURL = imageURL;
     }
 
-    public double getPrice() {
-        return price;
+    public double getCostprice() {
+        return costprice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setCostprice(double costprice) {
+        this.costprice = costprice;
+    }
+
+    public double getSaleprice(){
+        return saleprice;
+    }
+
+    public void setSaleprice(double saleprice){
+        this.saleprice= saleprice;
+
     }
 
     public String getDescription() {
