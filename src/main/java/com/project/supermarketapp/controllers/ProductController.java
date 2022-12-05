@@ -48,7 +48,7 @@ public class ProductController {
 
     // create an api to edit the product
 
-    @GetMapping(value = "/users/name/{firstname}")
+    @GetMapping(value = "/product/{name}")
         public Product getProductbyName(@PathVariable String name)
     {
         return productService.getProductByName(name);
