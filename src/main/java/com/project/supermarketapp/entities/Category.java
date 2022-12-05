@@ -35,6 +35,12 @@ public class Category {
   public void setCategoryDescription(String categoryDescription) {
     this.categoryDescription = categoryDescription;
   }
-  
 
+  public Integer getCategoryId() {
+    return categoryId;
+  }
+
+  public void setCategoryId(Integer categoryId) {
+    this.categoryId = categoryId;
+  }
 }

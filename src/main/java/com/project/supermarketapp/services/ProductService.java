@@ -23,8 +23,8 @@ public class ProductService {
         product.setImageURL(productDto.getImageURL());
         product.setName(productDto.getName());
         product.setCategory(category);
-        product.setCostprice(productDto.getCostprice());
-        product.setSalePrice(productDto.getSaleprice());
+        product.setCostPrice(productDto.getCostPrice());
+        product.setSalePrice(productDto.getSalePrice());
         productRepository.save(product);
     }
 
@@ -34,8 +34,8 @@ public class ProductService {
         productDto.setImageURL(product.getImageURL());
         productDto.setName(product.getName());
         productDto.setCategoryId(product.getId());
-        productDto.setCostprice(product.getCostprice());
-        productDto.setSaleprice(product.getSalePrice());
+        productDto.setCostPrice(product.getCostPrice());
+        productDto.setSalePrice(product.getSalePrice());
         productDto.setId(product.getId());
         return productDto;
     }
@@ -60,8 +60,8 @@ public class ProductService {
         product.setDescription(productDto.getDescription());
         product.setImageURL(productDto.getImageURL());
         product.setName(productDto.getName());
-        product.setCostprice(productDto.getCostprice());
-        product.setSalePrice(productDto.getSaleprice());
+        product.setCostPrice(productDto.getCostPrice());
+        product.setSalePrice(productDto.getSalePrice());
         productRepository.save(product);
     }
     public Product findById(Integer productId) throws ProductNotExistsException {
