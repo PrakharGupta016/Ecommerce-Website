@@ -6,13 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class SupermarketappApplication  {
 
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	private PasswordEncoder passwordEncoder;
 	public static void main(String[] args) {
 		SpringApplication.run(SupermarketappApplication.class, args);
 	}
