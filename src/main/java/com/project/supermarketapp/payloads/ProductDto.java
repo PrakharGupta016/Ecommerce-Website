@@ -41,8 +41,8 @@ public class ProductDto {
         return costPrice;
     }
 
-    public void setCostPrice(double costprice) {
-        this.costPrice = costprice;
+    public void setCostPrice(double costPrice) {
+        this.costPrice = costPrice;
     }
 
     public double getSalePrice(){
