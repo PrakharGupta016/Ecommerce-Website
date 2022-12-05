@@ -3,6 +3,7 @@ package com.project.supermarketapp.services;
 import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.exceptions.ResourceNotFoundException;
 import com.project.supermarketapp.payloads.UserDto;
+import com.project.supermarketapp.respository.ProductRepository;
 import com.project.supermarketapp.respository.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class UserService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+
+
     public UserDto signUpUser(UserDto userDto) {
         User user = this.dtoToUser(userDto);
         User savedUser = this.userRepo.save(user);
@@ -54,6 +58,9 @@ public class UserService {
         return;
 
     }
+
+
+
     private User dtoToUser(UserDto userDto) {
         User user = this.modelMapper.map(userDto,User.class);
 

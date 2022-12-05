@@ -1,11 +1,13 @@
 package com.project.supermarketapp.controllers;
 
+import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.payloads.ApiResponse;
 import com.project.supermarketapp.payloads.ProductDto;
 import com.project.supermarketapp.entities.Category;
 import com.project.supermarketapp.entities.Product;
 import com.project.supermarketapp.respository.CategoryRepo;
 import com.project.supermarketapp.services.ProductService;
+import com.project.supermarketapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +47,12 @@ public class ProductController {
     }
 
     // create an api to edit the product
+
+    @GetMapping(value = "/users/name/{firstname}")
+        public Product getProductbyName(@PathVariable String name)
+    {
+        return productService.getProductByName(name);
+    }
 
 
     @PostMapping("/update/{productId}")

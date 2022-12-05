@@ -17,7 +17,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private @NotNull Integer id;
 
     private @NotNull String name;
     private @NotNull String imageURL;

@@ -2,7 +2,11 @@ package com.project.supermarketapp.services;
 
 import com.project.supermarketapp.entities.Category;
 import com.project.supermarketapp.entities.Product;
+import com.project.supermarketapp.entities.User;
+import com.project.supermarketapp.entities.Wallet;
+import com.project.supermarketapp.exceptions.ResourceNotFoundException;
 import com.project.supermarketapp.payloads.ProductDto;
+import com.project.supermarketapp.payloads.UserDto;
 import com.project.supermarketapp.respository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,4 +67,13 @@ public class ProductService {
         product.setSalePrice(productDto.getSaleprice());
         productRepository.save(product);
     }
+
+    public Product getProductByName(String name)
+    {
+       return productRepository.findByname(name);
+
+    }
+
+
 }
+
