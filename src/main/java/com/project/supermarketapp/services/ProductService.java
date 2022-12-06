@@ -4,7 +4,9 @@ import com.project.supermarketapp.entities.Category;
 import com.project.supermarketapp.entities.Product;
 import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.entities.Wallet;
+import com.project.supermarketapp.exceptions.ProductNotExistsException;
 import com.project.supermarketapp.exceptions.ResourceNotFoundException;
+import com.project.supermarketapp.exceptions.WalletException;
 import com.project.supermarketapp.payloads.ProductDto;
 import com.project.supermarketapp.payloads.UserDto;
 import com.project.supermarketapp.respository.ProductRepository;
@@ -72,9 +74,14 @@ public class ProductService {
     {
        return productRepository.findByName(name);
 
+
     }
+    public Product getById(Integer id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            return product.get();
+        }
+        throw new ProductNotExistsException("Product does not exist");
 
-
-
-}
+    }}
 

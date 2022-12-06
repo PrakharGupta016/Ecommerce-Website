@@ -27,7 +27,7 @@ public class CartService {
     public void addToCart(AddToCartDto addToCartDto, User user) {
 
         // validate if the product id is valid
-        Product product = productService.findById(addToCartDto.getProductId());
+        Product product = productService.getById(addToCartDto.getProductId());
 
         Cart cart = new Cart();
         cart.setProduct(product);
