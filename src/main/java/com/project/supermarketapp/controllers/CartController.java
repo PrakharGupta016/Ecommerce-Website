@@ -4,22 +4,32 @@ import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.payloads.ApiResponse;
 import com.project.supermarketapp.payloads.dto_cart.AddToCartDto;
 import com.project.supermarketapp.payloads.dto_cart.CartDto;
+import com.project.supermarketapp.security.CustomUserDetailService;
+import com.project.supermarketapp.security.JwtTokenHelper;
 import com.project.supermarketapp.services.AuthenticationService;
 import com.project.supermarketapp.services.CartService;
+import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
-public class CartController {
+@RequestMapping("api/cart/")
+public class CartController  {
 
     @Autowired
     private CartService cartService;
 
     @Autowired
     private AuthenticationService authenticationService;
+    @Autowired
+    private JwtTokenHelper jwtTokenHelper;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
 
 
     // post cart api
@@ -27,15 +37,15 @@ public class CartController {
     public ResponseEntity<ApiResponse> addToCart(@RequestBody AddToCartDto addToCartDto,
                                                  @RequestParam("token") String token) {
         // authenticate the token
-        authenticationService.authenticate(token);
+        String username = this.jwtTokenHelper.getUsernameFromToken(token);
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
 
         // find the user
 
-        User user = authenticationService.getUser(token);
 
 
-        cartService.addToCart(addToCartDto, user );
+        cartService.addToCart(addToCartDto, (User)userDetails );
 
         return new ResponseEntity<>(new ApiResponse("Added to cart", true), HttpStatus.CREATED);
     }

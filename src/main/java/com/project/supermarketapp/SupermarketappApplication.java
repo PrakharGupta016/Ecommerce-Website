@@ -6,13 +6,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.modelmapper.ModelMapper;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class SupermarketappApplication  {
+public class SupermarketappApplication implements CommandLineRunner {
+
 
 	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;
 	public static void main(String[] args) {
 		SpringApplication.run(SupermarketappApplication.class, args);
 	}
@@ -21,8 +22,8 @@ public class SupermarketappApplication  {
 		return new ModelMapper();
 	}
 
-//	@Override
-//	public void run(String... args) throws Exception {
-//	  System.out.println(this.passwordEncoder.encode("vds"));
-//	}
+	@Override
+	public void run(String... args) throws Exception {
+	  System.out.println(this.passwordEncoder.encode("1234"));
+	}
 }
