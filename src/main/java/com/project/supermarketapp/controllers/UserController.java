@@ -3,13 +3,17 @@ package com.project.supermarketapp.controllers;
 import com.project.supermarketapp.payloads.ApiResponse;
 import com.project.supermarketapp.payloads.UserDto;
 import com.project.supermarketapp.services.UserService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import com.razorpay.*;
+
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -50,6 +54,21 @@ public class UserController {
     public ResponseEntity<UserDto> getUser(@PathVariable Integer userId){
         return ResponseEntity.ok(this.userService.getUser(userId));
 
+    }
+
+    //Creating order for payment
+    //Response Body
+    @PostMapping("/create_order")
+    public String createOrder(@RequestBody Map<String,Object> data) throws RazorpayException {
+        int amount=Integer.parseInt(data.get("amount").toString());
+        RazorpayClient razorpayClient= new RazorpayClient("rzp_test_EKtW453UQaizbN","5HY2GCYMhBn8H837uDhq9Jcu");
+
+        JSONObject options = new JSONObject();
+        options.put("amount", amount*100);
+        options.put("currency", "INR");
+        options.put("receipt", "txn_123456");
+        Order order = razorpayClient.Orders.create(options);
+        return order.toString();
     }
 }
 
