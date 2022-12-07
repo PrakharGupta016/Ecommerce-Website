@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 public class SupermarketappApplication implements CommandLineRunner {
@@ -26,4 +29,6 @@ public class SupermarketappApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 	  System.out.println(this.passwordEncoder.encode("1234"));
 	}
+
+
 }

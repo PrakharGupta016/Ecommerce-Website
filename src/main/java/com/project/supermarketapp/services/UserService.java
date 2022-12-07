@@ -1,12 +1,16 @@
 package com.project.supermarketapp.services;
 
+import com.project.supermarketapp.config.AppConstants;
+import com.project.supermarketapp.entities.Role;
 import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.exceptions.ResourceNotFoundException;
 import com.project.supermarketapp.payloads.UserDto;
 import com.project.supermarketapp.respository.ProductRepository;
+import com.project.supermarketapp.respository.RoleRepo;
 import com.project.supermarketapp.respository.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +23,12 @@ public class UserService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepo roleRepo;
 
 
 
@@ -76,6 +86,22 @@ public class UserService {
     }
 //    User save (UserDto registrationDto){}
 
+public UserDto registerNewUser(UserDto userDto) {
+
+    User user = this.modelMapper.map(userDto, User.class);
+
+    // encoded the password
+    user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+
+    // roles
+    Role role = this.roleRepo.findById(AppConstants.NORMAL_USER).get();
+
+    user.getRoles().add(role);
+
+    User newUser = this.userRepo.save(user);
+
+    return this.modelMapper.map(newUser, UserDto.class);
+}
 
 }
 
