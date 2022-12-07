@@ -21,5 +21,5 @@ public interface CategoryService {
 
     //get all
     List<CategoryDto> getCategories();
-
+String getCategoryNameById(Integer categoryId);
 }

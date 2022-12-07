@@ -72,4 +72,11 @@ public class CategoryServiceImpl implements CategoryService {
 
         return catDtos;
     }
+
+    @Override
+    public String getCategoryNameById(Integer categoryId) {
+        Category cat = this.categoryRepo.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category", "category id", categoryId));
+        String name=cat.getCategoryTitle();
+        return name;
+    }
 }

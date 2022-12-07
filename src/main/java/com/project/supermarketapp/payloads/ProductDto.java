@@ -17,7 +17,6 @@ public class ProductDto {
     private @NotNull String description;
     private @NotNull Integer categoryId;
 
-
     public ProductDto() {
     }
 

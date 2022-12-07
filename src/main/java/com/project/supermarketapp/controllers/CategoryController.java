@@ -59,6 +59,13 @@ public class CategoryController {
         List<CategoryDto> categories = this.categoryService.getCategories();
         return ResponseEntity.ok(categories);
     }
+    @GetMapping("/name_by_id/{catId}")
+    public ResponseEntity<?> getCategoryByName(@PathVariable Integer catId){
+        String name = this.categoryService.getCategoryNameById(catId);
+
+        return new ResponseEntity<>(name, HttpStatus.OK);
+
+    }
 
 
 }
