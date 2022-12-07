@@ -44,10 +44,22 @@ public class UserController {
 
 
     }
+    @DeleteMapping("/del/{email}")
+    public ResponseEntity<ApiResponse> deleteUserByUsername(@PathVariable String email){
+        this.userService.deleteUserByUsername(email);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted Successful",true),HttpStatus.OK);
+
+
+    }
     //GET-user get
     @GetMapping("/")
     public ResponseEntity<List<UserDto>> getAllUsers(){
         return ResponseEntity.ok(this.userService.getAllUsers());
+
+    }
+    @GetMapping("/ByUsername/{email}")
+    public ResponseEntity<UserDto> getUserByUsername(@PathVariable String email){
+        return ResponseEntity.ok(this.userService.getUserByUsername(email));
 
     }
     //GET-single user

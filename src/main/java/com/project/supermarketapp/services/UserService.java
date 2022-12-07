@@ -56,6 +56,12 @@ public class UserService {
 
         return this.userToDto(user);
     }
+    public UserDto getUserByUsername(String email) {
+        // TODO Auto-generated method stub
+        User user  = this.userRepo.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User with email does not exist"));
+
+        return this.userToDto(user);
+    }
     public List<UserDto> getAllUsers() {
         List<User> users= this.userRepo.findAll();
         List<UserDto>userDtos = users.stream().map(user->this.userToDto(user)).collect(Collectors.toList());
@@ -64,6 +70,13 @@ public class UserService {
     public void deleteUser(Integer userId) {
         // TODO Auto-generated method stub
         User user  = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User","User ID",userId));
+        this.userRepo.delete(user);
+        return;
+
+    }
+    public void deleteUserByUsername(String email) {
+        // TODO Auto-generated method stub
+        User user  = this.userRepo.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User with email does not exist"));
         this.userRepo.delete(user);
         return;
 
