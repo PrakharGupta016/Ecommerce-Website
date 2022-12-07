@@ -1,6 +1,7 @@
 package com.project.supermarketapp.controllers;
 
 
+import com.project.supermarketapp.payloads.ApiResponse;
 import com.project.supermarketapp.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,9 @@ public class ImageController {
     private StorageService service;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+    public ResponseEntity<ApiResponse> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
         String uploadImage = service.uploadImage(file);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(uploadImage);
+        return new ResponseEntity<>(new ApiResponse(uploadImage,true),HttpStatus.OK);
     }
 
     @GetMapping("/{fileName}")
