@@ -59,6 +59,13 @@ public class ProductController {
         productService.updateProduct(productDto, productId);
         return new ResponseEntity<ApiResponse>(new ApiResponse("product has been updated", true), HttpStatus.OK);
     }
+    // Find product by category
+     @GetMapping("/category/{CatId}")
+    public ResponseEntity<List<Product>>getProductByCategory(@PathVariable int CatId)
+     {
+        List<Product>findProductByCategory=this.productService.findProductByCategory(CatId);
+        return new ResponseEntity<List<Product>>(findProductByCategory, HttpStatus.ACCEPTED);
 
+     }
 
 }
