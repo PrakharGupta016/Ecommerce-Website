@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Entity
+@Data
 public class Role {
 
     @Id
@@ -14,11 +15,5 @@ public class Role {
 
     private String name;
 
-    public int getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
 }

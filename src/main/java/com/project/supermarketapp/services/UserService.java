@@ -102,6 +102,22 @@ public UserDto registerNewUser(UserDto userDto) {
 
     return this.modelMapper.map(newUser, UserDto.class);
 }
+    public UserDto registerNewAdmin(UserDto userDto) {
+
+        User user = this.modelMapper.map(userDto, User.class);
+
+        // encoded the password
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+
+        // roles
+        Role role = this.roleRepo.findById(AppConstants.ADMIN_USER).get();
+
+        user.getRoles().add(role);
+
+        User newUser = this.userRepo.save(user);
+
+        return this.modelMapper.map(newUser, UserDto.class);
+    }
 
 }
 

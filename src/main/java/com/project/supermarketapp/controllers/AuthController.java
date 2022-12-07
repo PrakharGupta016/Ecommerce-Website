@@ -68,6 +68,11 @@ private JwtTokenHelper jwtTokenHelper;
     UserDto registeredUser = this.userService.registerNewUser(userDto);
     return new ResponseEntity<UserDto>(registeredUser, HttpStatus.CREATED);
   }
+  @PostMapping("/register-admin")
+  public ResponseEntity<UserDto> registerAdmin( @RequestBody UserDto userDto) {
+    UserDto registeredAdmin = this.userService.registerNewAdmin(userDto);
+    return new ResponseEntity<UserDto>(registeredAdmin, HttpStatus.CREATED);
+  }
 
   // get loggedin user data
   @Autowired
