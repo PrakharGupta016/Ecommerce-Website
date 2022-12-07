@@ -68,5 +68,8 @@ public class ProductController {
         return new ResponseEntity<List<Product>>(findProductByCategory, HttpStatus.ACCEPTED);
 
      }
-
-}
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteProductById(@PathVariable Integer id){
+        this.productService.deleteProductById(id);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("Product deleted Successful",true),HttpStatus.OK);
+}}

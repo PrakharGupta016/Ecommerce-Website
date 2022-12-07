@@ -97,6 +97,13 @@ public class ProductService {
        List<Product>findByCategory =this.productRepository.findByCategory(Cat);
        return findByCategory;
     }
+    public void deleteProductById(Integer id) {
+        // TODO Auto-generated method stub
+        Product product  = this.productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("product with this id does not exist"));
+        this.productRepository.delete(product);
+        return;
+
+    }
 
 }
 
