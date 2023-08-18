@@ -11,6 +11,7 @@ import com.project.supermarketapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class ProductController {
 
     @Autowired
     CategoryRepo categoryRepo;
-
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/")
     public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductDto productDto) {
         Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
@@ -51,6 +52,7 @@ public class ProductController {
     }
 
 
+
     @PostMapping("/update/{productId}")
     public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productId") Integer productId, @RequestBody ProductDto productDto) throws Exception {
         Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
@@ -68,8 +70,16 @@ public class ProductController {
         return new ResponseEntity<List<Product>>(findProductByCategory, HttpStatus.ACCEPTED);
 
      }
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ApiResponse> deleteProductById(@PathVariable Integer id){
         this.productService.deleteProductById(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Product deleted Successful",true),HttpStatus.OK);
-}}
+
+    }
+    @GetMapping("/{productId}")
+    public Product getProductById(@PathVariable Integer productId) {
+        return productService.getById(productId);
+    }
+
+}

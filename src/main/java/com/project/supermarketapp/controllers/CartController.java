@@ -16,8 +16,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("api/cart/")
+@CrossOrigin
+
 public class CartController  {
 
     @Autowired
@@ -55,14 +58,12 @@ public class CartController  {
     @GetMapping("/")
     public ResponseEntity<CartDto> getCartItems(@RequestParam("token") String token) {
         // authenticate the token
-        authenticationService.authenticate(token);
-
-        // find the user
-        User user = authenticationService.getUser(token);
+        String username = this.jwtTokenHelper.getUsernameFromToken(token);
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
         // get cart items
 
-        CartDto cartDto = cartService.listCartItems(user);
+        CartDto cartDto = cartService.listCartItems((User) userDetails);
         return new ResponseEntity<>(cartDto, HttpStatus.OK);
     }
 
@@ -73,12 +74,10 @@ public class CartController  {
                                                       @RequestParam("token") String token) {
 
         // authenticate the token
-        authenticationService.authenticate(token);
+        String username = this.jwtTokenHelper.getUsernameFromToken(token);
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
-        // find the user
-        User user = authenticationService.getUser(token);
-
-        cartService.deleteCartItem(itemId, user);
+        cartService.deleteCartItem(itemId, (User) userDetails);
 
         return new ResponseEntity<>(new ApiResponse("Item has been removed", true), HttpStatus.OK);
 

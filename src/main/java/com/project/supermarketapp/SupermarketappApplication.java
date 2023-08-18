@@ -10,8 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.rmi.registry.Registry;
 import java.util.List;
 
 @SpringBootApplication
@@ -20,6 +25,7 @@ public class SupermarketappApplication implements CommandLineRunner {
 
 
 	@Autowired
+	@Lazy
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private RoleRepo roleRepo;
@@ -59,6 +65,16 @@ public class SupermarketappApplication implements CommandLineRunner {
 		}
 
 	}
+//	@Bean
+//	@Lazy
+//	public WebMvcConfigurer config(){
+//		return new WebMvcConfigurer() {
+//			public void addCorsMappings(CorsRegistry reg){
+//				reg.addMapping("/**").allowedOrigins("*");
+//
+//			}
+//		};
+//	}
 
 
 }

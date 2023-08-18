@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -45,10 +46,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .disable()
             .authorizeHttpRequests()
             .antMatchers("/api/v1/auth/*").permitAll()
-            .antMatchers("*/*").permitAll()
+            .antMatchers("/api/product/*").permitAll()
+            .antMatchers("/api/*").permitAll()
+            .antMatchers("/api/cart/*").permitAll()
+                .antMatchers("/api/cart/?*").permitAll()
+            .antMatchers("/api/*").permitAll()
 //            .antMatchers("/api/users/").permitAll()
-            .antMatchers(HttpMethod.GET).permitAll()
-//            .permitAll()
+            .antMatchers(HttpMethod.DELETE).permitAll()
             .anyRequest()
             .authenticated()
             .and()
@@ -99,4 +103,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         return bean;
     }
-    }
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        // ...
+//        http.cors();
+//        return http.build();
+//    }
+}
