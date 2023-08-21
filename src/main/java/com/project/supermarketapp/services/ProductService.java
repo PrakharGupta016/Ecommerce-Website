@@ -2,20 +2,13 @@ package com.project.supermarketapp.services;
 
 import com.project.supermarketapp.entities.Category;
 import com.project.supermarketapp.entities.Product;
-import com.project.supermarketapp.entities.User;
-import com.project.supermarketapp.entities.Wallet;
 import com.project.supermarketapp.exceptions.ProductNotExistsException;
 import com.project.supermarketapp.exceptions.ResourceNotFoundException;
-import com.project.supermarketapp.exceptions.WalletException;
 import com.project.supermarketapp.payloads.ProductDto;
-import com.project.supermarketapp.payloads.UserDto;
 import com.project.supermarketapp.respository.CategoryRepo;
 import com.project.supermarketapp.respository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;

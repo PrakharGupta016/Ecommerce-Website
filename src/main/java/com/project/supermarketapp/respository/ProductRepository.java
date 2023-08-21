@@ -2,7 +2,6 @@ package com.project.supermarketapp.respository;
 
 import com.project.supermarketapp.entities.Category;
 import com.project.supermarketapp.entities.Product;
-import com.project.supermarketapp.entities.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
