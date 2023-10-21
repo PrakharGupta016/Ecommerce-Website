@@ -1,6 +1,8 @@
 package com.project.supermarketapp.entities;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Getter
+@Setter
 @Table(name="Categories")
 public class Category {
   @Id
@@ -20,27 +24,5 @@ public class Category {
   @Column(name="description")
   private String categoryDescription;
 
-  public String getCategoryTitle() {
-    return categoryTitle;
-  }
 
-  public void setCategoryTitle(String categoryTitle) {
-    this.categoryTitle = categoryTitle;
-  }
-
-  public String getCategoryDescription() {
-    return categoryDescription;
-  }
-
-  public void setCategoryDescription(String categoryDescription) {
-    this.categoryDescription = categoryDescription;
-  }
-
-  public Integer getCategoryId() {
-    return categoryId;
-  }
-
-  public void setCategoryId(Integer categoryId) {
-    this.categoryId = categoryId;
-  }
 }

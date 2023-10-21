@@ -1,6 +1,9 @@
 package com.project.supermarketapp.entities;
 
 import com.sun.istack.NotNull;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
+@Getter
+@Setter
 public class Product {
 
     @Id
@@ -31,61 +36,6 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Cart> cart;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
-    }
-
-    public double getCostPrice() {
-        return costPrice;
-    }
-
-    public void setCostPrice(double costprice) {
-        this.costPrice = costprice;
-    }
-
-    public double getSalePrice() {
-        return salePrice;
-    }
-
-    public void setSalePrice( double salePrice)
-    {
-        this.salePrice= salePrice;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
 }
