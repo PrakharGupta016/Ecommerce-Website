@@ -1,5 +1,6 @@
 package com.project.supermarketapp.controllers;
 
+import com.project.supermarketapp.entities.Image;
 import com.project.supermarketapp.entities.User;
 import com.project.supermarketapp.payloads.ApiResponse;
 import com.project.supermarketapp.payloads.ProductDto;
@@ -10,12 +11,17 @@ import com.project.supermarketapp.services.ProductService;
 import com.project.supermarketapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/product")
@@ -27,14 +33,40 @@ public class ProductController {
     @Autowired
     CategoryRepo categoryRepo;
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/")
-    public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductDto productDto) {
+    @PostMapping(value = "/",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ApiResponse> createProduct(@RequestPart("product") ProductDto productDto, @RequestPart("imageFile")MultipartFile[] file) {
         Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
         if (optionalCategory.isEmpty()) {
             return new ResponseEntity<ApiResponse>(new ApiResponse("category does not exists", false), HttpStatus.BAD_REQUEST);
         }
-        productService.createProduct(productDto, optionalCategory.get());
+        try
+        {
+            Set<Image> resultImages= uploadImage(file);
+            productService.createProduct(productDto, optionalCategory.get(),resultImages);
+
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+
         return new ResponseEntity<ApiResponse>(new ApiResponse("product has been added", true), HttpStatus.CREATED);
+    }
+    public Set<Image> uploadImage(MultipartFile [] multipartFiles) throws IOException {
+        Set<Image> store = new HashSet<>();
+        for (MultipartFile file:multipartFiles)
+        {
+            Image image = new Image();
+            image.setImageName(file.getOriginalFilename());
+            image.setType(file.getContentType());
+            image.setBytes(file.getBytes());
+            store.add(image);
+        }
+
+        return store;
+
+
+
     }
 
     @GetMapping("/")

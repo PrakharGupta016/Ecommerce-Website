@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 //import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,6 +27,18 @@ public class Product {
 
     private @NotNull double salePrice;
     private @NotNull String description;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(name ="product_images",
+            joinColumns = {
+                    @JoinColumn(name ="product_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name ="image_id")
+            }
+    )
+    private Set<Image> images;
+
 
 
     // idMany-to-one relationship

@@ -1,6 +1,7 @@
 package com.project.supermarketapp.services;
 
 import com.project.supermarketapp.entities.Category;
+import com.project.supermarketapp.entities.Image;
 import com.project.supermarketapp.entities.Product;
 import com.project.supermarketapp.exceptions.ProductNotExistsException;
 import com.project.supermarketapp.exceptions.ResourceNotFoundException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProductService {
@@ -21,8 +23,9 @@ public class ProductService {
     @Autowired
     CategoryRepo categoryRepo;
 
-    public void createProduct(ProductDto productDto, Category category) {
+    public void createProduct(ProductDto productDto, Category category, Set<Image> store) {
         Product product = new Product();
+        product.setImages(store);
         product.setDescription(productDto.getDescription());
         product.setImageURL(productDto.getImageURL());
         product.setName(productDto.getName());
