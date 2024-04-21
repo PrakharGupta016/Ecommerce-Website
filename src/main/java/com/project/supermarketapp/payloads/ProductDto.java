@@ -16,8 +16,6 @@ public class ProductDto {
     // for update we need the id
     private Integer id;
     private @NotNull String name;
-    private @NotNull String imageURL;
-
     private @NotNull double costPrice;
 
     private @NotNull double salePrice;

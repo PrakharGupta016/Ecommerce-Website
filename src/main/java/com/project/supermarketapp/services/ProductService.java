@@ -27,7 +27,6 @@ public class ProductService {
         Product product = new Product();
         product.setImages(store);
         product.setDescription(productDto.getDescription());
-        product.setImageURL(productDto.getImageURL());
         product.setName(productDto.getName());
         product.setCategory(category);
         product.setCostPrice(productDto.getCostPrice());
@@ -38,7 +37,6 @@ public class ProductService {
     public ProductDto getProductDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setDescription(product.getDescription());
-        productDto.setImageURL(product.getImageURL());
         productDto.setName(product.getName());
         productDto.setCategoryId(product.getId());
         productDto.setCostPrice(product.getCostPrice());
@@ -65,7 +63,6 @@ public class ProductService {
         }
         Product product = optionalProduct.get();
         product.setDescription(productDto.getDescription());
-        product.setImageURL(productDto.getImageURL());
         product.setName(productDto.getName());
         product.setCostPrice(productDto.getCostPrice());
         product.setSalePrice(productDto.getSalePrice());
